@@ -218,6 +218,7 @@ namespace QQHelper
                     if (aeForm != null)
                     {
                         aeEdit = aeForm.FindFirst(TreeScope.Subtree, new PropertyCondition(AutomationElement.NameProperty, controlName));
+                        break;
                     }
                     else
                     {
@@ -244,8 +245,8 @@ namespace QQHelper
                 if (valuepattern != null)
                 {
                     //获取控件内的文本
-                    string result = valuepattern.Current.Value;
-                    result = result.Replace("￼", "");
+                    Result = valuepattern.Current.Value;
+                    Result = Result.Replace("￼", "");
                 }
             }
             catch (Exception ex)
@@ -274,17 +275,17 @@ namespace QQHelper
                     //如果不获得焦点在有些时候会出现问题导致消息发不出去.其实QQ窗口在还原的时候已经自动获取到的输入框的焦点
                     Win32.SetFocus(_QQWindowHandle);//让QQ窗口得到焦点,
                   
-                    AutomationElement aeControl = findElement(winName, "输入");
+                    //AutomationElement aeControl = findElement(winName, "输入");
                     //得到控件的位置
-                    System.Windows.Rect boundingRect = (System.Windows.Rect)aeControl.GetCurrentPropertyValue(AutomationElement.BoundingRectangleProperty);
+                    //System.Windows.Rect boundingRect = (System.Windows.Rect)aeControl.GetCurrentPropertyValue(AutomationElement.BoundingRectangleProperty);
                     //发送消息在窗口中点击一下，防止出现有时焦点在消息记录的情况
-                    int x = (int)(boundingRect.Left + boundingRect.Width / 2);
-                    int y = (int)(boundingRect.Top + boundingRect.Height / 2);
-                    int pos =x+y*65536;
-                    message = pos.ToString() + "_" + message;
-                    Win32.SendMessageInt(_QQWindowHandle, 0x201, 0, pos);//按下
+                    //int x = (int)(boundingRect.Left + boundingRect.Width / 2);
+                    //int y = (int)(boundingRect.Top + boundingRect.Height / 2);
+                    //int pos =x+y*65536;
+                    //message = pos.ToString() + "_" + message;
+                    //Win32.SendMessageInt(_QQWindowHandle, 0x201, 0, pos);//按下
                     //Thread.Sleep(20);
-                    Win32.SendMessageInt(_QQWindowHandle, 0x202, 0, pos);//松开
+                    //Win32.SendMessageInt(_QQWindowHandle, 0x202, 0, pos);//松开
                     //把消息打散为字节
                     byte[] bMessage = System.Text.Encoding.GetEncoding("GB2312").GetBytes(message);
                     for (int i = 0; i < bMessage.Length; i++)//发送消息
