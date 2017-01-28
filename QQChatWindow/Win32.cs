@@ -25,6 +25,7 @@ namespace QQHelper
         public const int WM_KEYUP = 0x0101;
         public const int SW_SHOW = 0x5;
         public const int SW_HIDE = 0x0;
+        public const int SWP_NOSIZE = 0x0001;
 
         /// <summary>
         /// 向窗口发送消息
@@ -75,8 +76,45 @@ namespace QQHelper
 
         [DllImport("user32.dll", EntryPoint = "SendMessage")]
         public static extern int SendMessageInt(IntPtr hwnd, int wMsg, int wParam, int lParam);
-
+        /// <summary>
+        /// 显示或隐藏窗口
+        /// </summary>
+        /// <param name="hWnd"></param>
+        /// <param name="nCmdShow"></param>
+        /// <returns></returns>
         [DllImport("user32.dll")]
         public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+        /// <summary>
+        /// 移动窗口
+        /// </summary>
+        /// <param name="hWnd"></param>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="nWidth"></param>
+        /// <param name="nHeight"></param>
+        /// <param name="bRepaint"></param>
+        /// <returns></returns>
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
+        /// <summary>
+        /// 设置前台窗口
+        /// </summary>
+        /// <param name="hWnd"></param>
+        /// <returns></returns>
+        [DllImport("user32.dll")]
+        public static extern bool SetForegroundWindow(IntPtr hWnd);
+        /// <summary>
+        /// 设置窗口位置
+        /// </summary>
+        /// <param name="win_handle"></param>
+        /// <param name="win_handle_insert_after"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="flags"></param>
+        /// <returns></returns>
+        [DllImport("User32.dll", CharSet = CharSet.Auto)]
+        public  static extern int SetWindowPos(IntPtr win_handle, IntPtr win_handle_insert_after, int x, int y, int width, int height, uint flags);
     }
 }

@@ -133,17 +133,5 @@ namespace QQHelper
 
             }
         }
-        /// <summary>
-        /// 保持QQ窗口最小化
-        /// </summary>
-        public void keepQQWindowsMinisize()
-        {
-            while (true)
-            {
-                _QQWindowHandle = Win32.FindWindow("TXGuiFoundation", _winTitle);
-                if ((int)_QQWindowHandle != 0) Win32.PostMessage(_QQWindowHandle, Win32.WM_SYSCOMMAND, Win32.SC_MINIMIZE, 0);
-                Thread.Sleep(1);
-            }
-        }
     }
 }

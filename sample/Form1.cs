@@ -17,33 +17,22 @@ namespace sample
         //String winTitle = "0";
         StringBuilder sb = new StringBuilder();
         QQChatWindow a = new QQChatWindow("0");
-        Thread t;
+        Rectangle Screenrect = new Rectangle();
         public Form1()
         {
             InitializeComponent();
-            this.FormClosing += Form1_FormClosing;
-        }
-
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if(t!=null)
-            {
-                if (t.IsAlive) t.Abort();
-            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             //ThreadStart ts = new ThreadStart(keep);
-
+            Screenrect  = Screen.GetWorkingArea(this);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //MessageBox.Show();
+            timer1.Enabled = false;
             a.sendQQMessage("0", "1234567890,数字,abcdefghijklmnopqrstuvwxy还有汉字的的一句非常长的信息是不是能发送出去？");
-            //a.sendMessage("123\n456\nabc\n汉字啊", SendMessageHotKey.ENTER);
-            //MessageBox.Show("1");
             sb.Append(a.readQQMessage("0")+"\n");
             sb.Append(DateTime.Now.ToString() + "--" + "send\n");
             textBox1.Text = sb.ToString();
@@ -52,12 +41,17 @@ namespace sample
         {
             if (checkBox1.Checked)
             {
-                t = new Thread(a.keepQQWindowsMinisize);
-                t.Start();
+                IntPtr hwnd = Win32.FindWindow(null, "0");
+                Win32.SendMessageInt(hwnd, Win32.WM_SYSCOMMAND, Win32.SC_RESTORE, 0);//还原QQ窗口,要等QQ响应
+                Win32.SetWindowPos(hwnd, IntPtr.Zero, Screenrect.Right, 100, 500, 300, Win32.SWP_NOSIZE);
+                Win32.PostMessage(hwnd, Win32.WM_SYSCOMMAND, Win32.SC_MINIMIZE, 0);
             }
             else
             {
-                t.Abort();
+                IntPtr hwnd = Win32.FindWindow(null, "0");
+                Win32.SendMessageInt(hwnd, Win32.WM_SYSCOMMAND, Win32.SC_RESTORE, 0);//还原QQ窗口,要等QQ响应
+                Win32.SetWindowPos(hwnd, IntPtr.Zero, 300, 100, 500, 300, Win32.SWP_NOSIZE);
+                Win32.PostMessage(hwnd, Win32.WM_SYSCOMMAND, Win32.SC_MINIMIZE, 0);
             }
         }
     }
