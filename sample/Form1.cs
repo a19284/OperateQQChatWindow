@@ -26,8 +26,10 @@ namespace sample
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (t.IsAlive) t.Abort();
-
+            if(t!=null)
+            {
+                if (t.IsAlive) t.Abort();
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
