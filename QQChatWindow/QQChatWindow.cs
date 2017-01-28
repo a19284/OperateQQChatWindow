@@ -271,9 +271,9 @@ namespace QQHelper
                 if ((uint)this._QQWindowHandle > 0)
                 {
                     //Win32.PostMessage(_QQWindowHandle, Win32.WM_SYSCOMMAND, Win32.SC_RESTORE, 0);
-                    Win32.SendMessageInt(_QQWindowHandle, Win32.WM_SYSCOMMAND, Win32.SC_RESTORE, 0);//还原QQ窗口,要等QQ响应
+                    //Win32.SendMessageInt(_QQWindowHandle, Win32.WM_SYSCOMMAND, Win32.SC_RESTORE, 0);//还原QQ窗口,要等QQ响应
                     //如果不获得焦点在有些时候会出现问题导致消息发不出去.其实QQ窗口在还原的时候已经自动获取到的输入框的焦点
-                    Win32.SetFocus(_QQWindowHandle);//让QQ窗口得到焦点,
+                    //Win32.SetFocus(_QQWindowHandle);//让QQ窗口得到焦点,
                   
                     //AutomationElement aeControl = findElement(winName, "输入");
                     //得到控件的位置
@@ -301,6 +301,18 @@ namespace QQHelper
             catch
             {
 
+            }
+        }
+        /// <summary>
+        /// 保持QQ窗口最小化
+        /// </summary>
+        public void keepQQWindowsMinisize()
+        {
+            while (true)
+            {
+                _QQWindowHandle = Win32.FindWindow("TXGuiFoundation", _winTitle);
+                if ((int)_QQWindowHandle != 0) Win32.PostMessage(_QQWindowHandle, Win32.WM_SYSCOMMAND, Win32.SC_MINIMIZE, 0);
+                Thread.Sleep(1);
             }
         }
     }
