@@ -46,17 +46,19 @@ namespace sample
         {
             if (checkBox1.Checked)
             {
-                IntPtr hwnd = Win32.FindWindow(null, "0");
-                Win32.SendMessageInt(hwnd, Win32.WM_SYSCOMMAND, Win32.SC_RESTORE, 0);//还原QQ窗口,要等QQ响应
-                Win32.SetWindowPos(hwnd, IntPtr.Zero, Screenrect.Right, 100, 500, 300, Win32.SWP_NOSIZE);
-                Win32.PostMessage(hwnd, Win32.WM_SYSCOMMAND, Win32.SC_MINIMIZE, 0);
+                a.hideChatWindow("0");
+                //IntPtr hwnd = Win32.FindWindow(null, "0");
+                //Win32.SendMessageInt(hwnd, Win32.WM_SYSCOMMAND, Win32.SC_RESTORE, 0);//还原QQ窗口,要等QQ响应
+                //Win32.SetWindowPos(hwnd, IntPtr.Zero, Screenrect.Right, 100, 500, 300, Win32.SWP_NOSIZE);
+                //Win32.PostMessage(hwnd, Win32.WM_SYSCOMMAND, Win32.SC_MINIMIZE, 0);
             }
             else
             {
-                IntPtr hwnd = Win32.FindWindow(null, "0");
-                Win32.SendMessageInt(hwnd, Win32.WM_SYSCOMMAND, Win32.SC_RESTORE, 0);//还原QQ窗口,要等QQ响应
-                Win32.SetWindowPos(hwnd, IntPtr.Zero, 300, 100, 500, 300, Win32.SWP_NOSIZE);
-                Win32.PostMessage(hwnd, Win32.WM_SYSCOMMAND, Win32.SC_MINIMIZE, 0);
+                a.resumeChatWindow("0");
+                //IntPtr hwnd = Win32.FindWindow(null, "0");
+                //Win32.SendMessageInt(hwnd, Win32.WM_SYSCOMMAND, Win32.SC_RESTORE, 0);//还原QQ窗口,要等QQ响应
+                //Win32.SetWindowPos(hwnd, IntPtr.Zero, 300, 100, 500, 300, Win32.SWP_NOSIZE);
+                //Win32.PostMessage(hwnd, Win32.WM_SYSCOMMAND, Win32.SC_MINIMIZE, 0);
             }
         }
     }

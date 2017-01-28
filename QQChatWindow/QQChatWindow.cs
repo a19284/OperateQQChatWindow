@@ -137,7 +137,28 @@ namespace QQHelper
 
             }
         }
-
+        /// <summary>
+        /// 移动窗口到边界外
+        /// </summary>
+        /// <param name="winName"></param>
+        public void hideChatWindow(string winName)
+        {
+            IntPtr hwnd = Win32.FindWindow(null, winName);
+            Win32.SendMessageInt(hwnd, Win32.WM_SYSCOMMAND, Win32.SC_RESTORE, 0);//还原QQ窗口,要等QQ响应
+            Win32.SetWindowPos(hwnd, IntPtr.Zero, Screen.PrimaryScreen.Bounds.Width, 100, 500, 300, Win32.SWP_NOSIZE);
+            Win32.PostMessage(hwnd, Win32.WM_SYSCOMMAND, Win32.SC_MINIMIZE, 0);
+        }
+        /// <summary>
+        /// 还原窗口到显示区域
+        /// </summary>
+        /// <param name="winName"></param>
+        public void resumeChatWindow(string winName)
+        {
+            IntPtr hwnd = Win32.FindWindow(null, winName);
+            Win32.SendMessageInt(hwnd, Win32.WM_SYSCOMMAND, Win32.SC_RESTORE, 0);//还原QQ窗口,要等QQ响应
+            Win32.SetWindowPos(hwnd, IntPtr.Zero, 300, 100, 500, 300, Win32.SWP_NOSIZE);
+            Win32.PostMessage(hwnd, Win32.WM_SYSCOMMAND, Win32.SC_MINIMIZE, 0);
+        }
         #region IDisposable Support
         private bool disposedValue = false; // 要检测冗余调用
 
