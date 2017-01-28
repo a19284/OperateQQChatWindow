@@ -21,6 +21,12 @@ namespace sample
         public Form1()
         {
             InitializeComponent();
+            this.FormClosing += Form1_FormClosing;
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //a.Dispose(true);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -31,7 +37,6 @@ namespace sample
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            timer1.Enabled = false;
             a.sendQQMessage("0", "1234567890,数字,abcdefghijklmnopqrstuvwxy还有汉字的的一句非常长的信息是不是能发送出去？");
             sb.Append(a.readQQMessage("0")+"\n");
             sb.Append(DateTime.Now.ToString() + "--" + "send\n");
