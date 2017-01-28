@@ -53,7 +53,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(284, 338);
+            this.textBox1.Size = new System.Drawing.Size(725, 338);
             this.textBox1.TabIndex = 1;
             // 
             // splitContainer1
@@ -71,7 +71,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.textBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(284, 382);
+            this.splitContainer1.Size = new System.Drawing.Size(725, 382);
             this.splitContainer1.SplitterDistance = 40;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -80,9 +80,9 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(12, 12);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(204, 16);
+            this.checkBox1.Size = new System.Drawing.Size(288, 16);
             this.checkBox1.TabIndex = 3;
-            this.checkBox1.Text = "保持聊天窗口最小化(防止受干扰)";
+            this.checkBox1.Text = "保持聊天窗口最小化(防止受干扰，隐藏到屏幕外)";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
@@ -90,7 +90,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 382);
+            this.ClientSize = new System.Drawing.Size(725, 382);
             this.Controls.Add(this.splitContainer1);
             this.Name = "Form1";
             this.Text = "Form1";

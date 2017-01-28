@@ -75,8 +75,8 @@ namespace QQHelper
                     //获取控件内的文本
                     Result = valuepattern.Current.Value;
                     Result = Result.Replace("￼", "");
-                    Result = Result.Replace("\n", "");
-                    Result = Result.Replace("\r", "\n");
+                    //Result = Result.Replace("\n", "");
+                    Result = Result.Replace("\r", System.Environment.NewLine);
                 }
             }
             catch (Exception ex)
